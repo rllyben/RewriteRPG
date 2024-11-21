@@ -56,17 +56,49 @@ namespace RewriteRPG.Characters
         {
             return Character.Level;
         }
-        public int GetPysicalDamage()
+        public int GetDefence()
+        {
+            return CurrentStats.Defense + CurrentItemStats.Defense;
+        }
+        public int GetMagicalDefence()
+        {
+            return CurrentStats.MagicalDefense + CurrentItemStats.MagicalDefense;
+        }
+        public int GetMinPhysicalDamage()
+        {
+            return CurrentStats.MinDamage + CurrentItemStats.MinDamage;
+        }
+        public int GetMaxPhysicalDamage()
+        {
+            return CurrentStats.MaxDamage + CurrentItemStats.MaxDamage;
+        }
+        public int GetRandomMinPysicalDamage()
         {
             Random rnd = new();
             int damage = (rnd.Next((CurrentStats.MinDamage + CurrentItemStats.MinDamage), (CurrentStats.MaxDamage + CurrentItemStats.MaxDamage + 1)));
             return damage;
         }
-        public int GetMagicalDamage()
+        public int GetMinMagicalDamage()
+        {
+            return CurrentStats.MinMagicalDamage + CurrentItemStats.MinMagicalDamage;
+        }
+        public int GetMaxMagicalDamage()
+        {
+            return CurrentStats.MaxMagicalDamage + CurrentItemStats.MaxMagicalDamage;
+        }
+        public int GetRandomMagicalDamage()
         {
             Random rnd = new();
             int damage = (rnd.Next((CurrentStats.MinMagicalDamage + CurrentItemStats.MinMagicalDamage), (CurrentStats.MaxMagicalDamage + CurrentItemStats.MaxMagicalDamage + 1)));
             return damage;
+        }
+        public int GetAim()
+        {
+            return CurrentStats.Aim + CurrentItemStats.Aim;
+        }
+        public int GetEvation()
+        {
+            return CurrentStats.Evasion + CurrentItemStats.Evasion;
         }
         public void GetHPStones(int amount)
         {
@@ -89,17 +121,17 @@ namespace RewriteRPG.Characters
         public void PrintAllStats()
         {
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine($"\n{this.ToString()}   Level: {GetLevel()}");
+            Console.WriteLine($"\n\t{this.ToString()}   Level: {GetLevel()}");
             Console.ResetColor();
-            Console.WriteLine($"\n       HP: {Character.CurrentHealth} / {Character.MaxHealth}        MP: {Character.ManaPoints} / {Character.MaxManaPoints}" +
-                              $"\n       Damage: {CurrentStats.MinDamage + CurrentItemStats.MinDamage} ~ {CurrentStats.MaxDamage + CurrentItemStats.MaxDamage}" +
-                              $"\n       Magical Damage: {CurrentStats.MinMagicalDamage + CurrentItemStats.MinMagicalDamage} ~ {CurrentStats.MaxMagicalDamage + CurrentItemStats.MaxMagicalDamage}" +
-                              $"\n       Evation: {CurrentStats.Evasion + CurrentItemStats.Evasion}" +
-                              $"\n       Aim: {CurrentStats.Aim + CurrentItemStats.Aim}" +
-                              $"\n       Defance: {CurrentStats.Defense + CurrentItemStats.Defense}" +
-                              $"\n       Magical Defance: {CurrentStats.MagicalDefense + CurrentItemStats.Defense}" +
-                              $"\n       Action Speed: {GetAvtionSpeed()}\n" +
-                              $"\nFree Statpoints: {Character.StatPoints}");
+            Console.WriteLine($"\n\tHP: {Character.CurrentHealth} / {Character.MaxHealth}        MP: {Character.ManaPoints} / {Character.MaxManaPoints}" +
+                              $"\n\tDamage: {GetMinPhysicalDamage()} ~ {GetMaxPhysicalDamage()}" +
+                              $"\n\tMagical Damage: {GetMinMagicalDamage()} ~ {GetMaxMagicalDamage()}" +
+                              $"\n\tEvation: {GetEvation()}" +
+                              $"\n\tAim: {GetAim()}" +
+                              $"\n\tDefance: {GetDefence()}" +
+                              $"\n\tMagical Defance: {GetMagicalDefence()}" +
+                              $"\n\tAction Speed: {GetAvtionSpeed()}\n" +
+                              $"\n\nFree Statpoints: {Character.StatPoints}");
             Console.WriteLine();
             Console.ReadKey();
         }

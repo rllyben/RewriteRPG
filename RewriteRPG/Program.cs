@@ -13,14 +13,14 @@ namespace RewriteRPG
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("\u0009Myria Console RPG");
+            Console.WriteLine("\tMyria Console RPG");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\n");
         }
         public static bool StartMenue()
         {
             int selection = 0;
-            string[] menueOptions = { "Stats", "Adventure", "Shop", "Inventorry", "Save and Exit" };
+            string[] menueOptions = { "Stats", "Adventure", "Shop", "Save and Exit" };
             ConsoleKey selectionSwitch;
 
             do

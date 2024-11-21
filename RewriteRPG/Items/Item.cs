@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RewriteRPG.Items
 {
-    internal class Item : Stats
+    internal class Item : Stats, IComparable<Item>
     {
         public Item(string name)
         {
@@ -14,9 +14,15 @@ namespace RewriteRPG.Items
         }
         public string Name { get; set; }
         public string CharacterClass { get; set; }
-        public string ItemSlot { get; set; }
+        public string? ItemSlot { get; set; }
         public int ItemLevel { get; set; }
         public string Rarety { get; set; } = "poor";
+
+        public int CompareTo(Item? other)
+        {
+            return this.Name.CompareTo(other.Name);
+        }
+
     }
 
 }
